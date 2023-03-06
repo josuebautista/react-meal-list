@@ -1,22 +1,23 @@
+import { useGlobalContext } from './utils/context';
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/js/bootstrap.js';
 import './App.css';
-import { useGlobalContext } from "./utils/context";
+
+import Search from './components/Search';
 import Favorites from './components/Favorites';
 import Meals from './components/Meals';
 import ModalComponent from './components/Modal';
-import Search from './components/Search';
-import 'bootstrap/dist/css/bootstrap.css';
-import 'bootstrap/dist/js/bootstrap.js';
 
 function App() {
-  const { showModal } = useGlobalContext()
+  const { showModal, favorites } = useGlobalContext();
 
   return (
     <div>
       <Search />
+      { favorites.length > 0 && <Favorites /> }
       <div className="container-fluid text-center">
-        <Favorites />
-        {showModal && <ModalComponent />}
-        <Meals />
+        <Meals/>
+        { showModal && <ModalComponent/>}
       </div>
     </div>
   )
